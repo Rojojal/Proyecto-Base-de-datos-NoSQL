@@ -1,6 +1,8 @@
 // src/config/db.js
 
 const mongoose = require('mongoose');
+const PORT = 3000;
+
 
 const connectDB = async () => {
     try {
