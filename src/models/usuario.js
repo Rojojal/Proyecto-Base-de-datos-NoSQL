@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const usuarioSchema = new Schema({
+const usuarioSchema = new mongoose.Schema({
     user_id: {type: Number, required: true},
     nombre: {type: String,required: true},
     edad: {type: Number,required: true,min: 0,max: 120 },
