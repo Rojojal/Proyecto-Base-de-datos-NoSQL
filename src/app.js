@@ -5,6 +5,7 @@ const path = require('path');
 const connectDB = require('./config/db');
 const itemRoutes = require('./routes/itemRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
+const expressLayouts = require('express-ejs-layouts'); 
  
 const app = express();
  
@@ -16,16 +17,20 @@ app.use(bodyParser.json());
  
 
 // Renderizado de vistas con EJS
-
 app.set('view engine', 'ejs');
-
 app.set('views', path.join(__dirname, 'views'));
 
+// Para el layout sea comun
+app.use(expressLayouts);
+
+app.set('layout', '_layout');  // Establece _layout como preterminado
+
+// Para archivos como css, imagenes, js, especificamente estaticos
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta principal
 app.get('/', (req, res) => {
-  res.render('Usuarios/index'); 
+  res.render('index', { title: 'CuidaT' }); 
 });
 
 // Rutas
