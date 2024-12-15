@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const recomendacionSchema = new mongoose.Schema({
+const recomendacionesSchema = new mongoose.Schema({
     recomendaciones_id: {type: Number, required: true},
     user_id: {type: Number, required: true},
     fecha: {type: Date, required: true},
@@ -11,4 +11,4 @@ const recomendacionSchema = new mongoose.Schema({
     nivel_prioridad: {type: String, required: true},
 }, { collection: 'Recomendaciones' });
 
-module.exports = mongoose.model('Recomendaciones', recomendacionSchema);
+module.exports = mongoose.model('Recomendaciones', recomendacionesSchema);

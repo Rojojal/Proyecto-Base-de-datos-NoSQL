@@ -27,6 +27,7 @@ class RecomendacionesService {
 
 
     async getAllRecomendaciones(queries) {
+        let recomendaciones
         try {
             // Filtrar por tipo de recomendación, si se proporciona
             if (queries?.tipo_Recomendaciones) {
@@ -38,9 +39,12 @@ class RecomendacionesService {
             else if (queries?.nivel_prioridad) {
                 queries = { nivel_prioridad: queries.nivel_prioridad };
                 return await Recomendaciones.find(queries);
+            }else {
+                recomendaciones = await Recomendaciones.find({});
             }
 
-            return await Recomendaciones.find(queries);
+            console.log('Recomendaciones encontradas:', recomendaciones);
+            return recomendaciones;
         } catch (error) {
             throw new Error('Error al filtrar las Recomendaciones: ' + error.message);
         }
