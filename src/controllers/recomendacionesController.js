@@ -13,15 +13,14 @@ class RecomendacionesController {
   */
   async createRecomendaciones(req, res) {
     try {
-      const Recomendaciones = await RecomendacionesService.createRecomendaciones(req.body);
-      res.status(201).json(Recomendaciones);
-      res.render('views/Recomendaciones/index')
+      
+      res.render('Recomendaciones/create.ejs',  { title: 'Crear recomendacion'},)
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   }
 
-
+ /** 
   async getRecomendaciones(req, res) {
     try {
       const Recomendaciones = await RecomendacionesService.getRecomendaciones(req.params.id);
@@ -33,7 +32,13 @@ class RecomendacionesController {
       res.status(500).json({ error: err.message });
     }
   }
+ */
 
+
+  /** 
+   * POST / 
+   * Mostrar recomendaciones
+  */
   async getAllRecomendaciones(req, res) {
     try {
       

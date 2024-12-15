@@ -1,32 +1,40 @@
-<body>
-    <h1>Recomendaciones</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID Recomendación</th>
-                <th>ID de Usuario</th>
-                <th>Fecha</th>
-                <th>Tipo de Recomendación</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <% recomendaciones.forEach(element => { %>
-                <tr>
-                    <td><%= element.recomendaciones_id %></td>
-                    <td><%= element.user_id %></td>
-                    <td><%= element.fecha %></td>
-                    <td><%= element.tipo_recomendacion %></td>
-                    <td>
-                        <a href="/recomendacion/<%= element._id %>">Ver Detalles</a>
-                        <a href="/recomendacion/edit/<%= element._id %>">Editar</a>
-                        <a href="/recomendacion/delete/<%= element._id %>">Eliminar</a>
-                    </td>
-                </tr>
-            <% }) %>
-        </tbody>
-    </table>
-    <a href="/recomendacion/create">Crear Nueva Recomendación</a>
-</body>
-
+<div class="container py-5">
+    <h1 class="text-center mb-4">Recomendaciones</h1>
+    
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-striped table-hover text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID Recomendación</th>
+                        <th>ID de Usuario</th>
+                        <th>Fecha</th>
+                        <th>Tipo de Recomendación</th>
+                        <th>Mensaje de recomendación</th>
+                        <th>Nivel de prioridad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% recomendaciones.forEach(element => { %>
+                        <tr>
+                            <td><%= element.recomendaciones_id %></td>
+                            <td><%= element.user_id %></td>
+                            <td><%= new Date(element.fecha).toLocaleDateString() %></td>
+                            <td><%= element.tipo_recomendacion %></td>
+                            <td><%= element.mensaje_recomendacion %></td>
+                            <td><%= element.nivel_prioridad %></td>
+                            <td>
+                                <a href="/recomendaciones/edit/<%= element._id %>" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="/recomendaciones/delete/<%= element._id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div class="text-end">
+                <a href="/recomendaciones/create" class="btn btn-success">Crear Nueva Recomendación</a>
+            </div>
+        </div>
+    </div>
+</div>

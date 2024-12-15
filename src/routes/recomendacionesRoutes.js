@@ -9,7 +9,7 @@ const RecomendacionesController = require('../controllers/recomendacionesControl
  * Rutas para manejar las Recomendaciones
 */
 router.get('/', RecomendacionesController.getAllRecomendaciones);
-router.get('/recomendaciones', RecomendacionesController.getAllRecomendaciones);
+router.get('/create', RecomendacionesController.createRecomendaciones);
 
 
 module.exports = router;
