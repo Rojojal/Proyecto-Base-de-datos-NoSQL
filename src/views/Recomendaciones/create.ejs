@@ -1,1 +1,41 @@
-<h1>creacion de recomendacion</h1>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <div class="card shadow">
+            <div class="card-header text-center bg-primary text-white">
+                <h3>Crear Nueva Recomendación</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/recomendaciones/add" >
+                    
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fecha" name="fecha" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo_recomendacion" class="form-label">Tipo de Recomendación</label>
+                        <input type="text" class="form-control" id="tipo_recomendacion" name="tipo_recomendacion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mensaje_recomendacion" class="form-label">Mensaje de Recomendación</label>
+                        <textarea class="form-control" id="mensaje_recomendacion" name="mensaje_recomendacion" rows="4" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nivel_prioridad" class="form-label">Nivel de Prioridad</label>
+                        <select class="form-select" id="nivel_prioridad" name="nivel_prioridad" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Alta">Alta</option>
+                            <option value="Media">Media</option>
+                            <option value="Baja">Baja</option>
+                        </select>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="/recomendaciones" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,37 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Recomendación</h1>
+    
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/recomendaciones/edit/<%= Recomendaciones._id %>?_method=PUT" method="POST">
+
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha" value="<%= new Date(Recomendaciones.fecha).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo_recomendacion" class="form-label">Tipo de Recomendación</label>
+                    <input type="text" class="form-control" id="tipo_recomendacion" name="tipo_recomendacion" value="<%= Recomendaciones.tipo_recomendacion %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mensaje_recomendacion" class="form-label">Mensaje de Recomendación</label>
+                    <textarea class="form-control" id="mensaje_recomendacion" name="mensaje_recomendacion" rows="4" required><%= Recomendaciones.mensaje_recomendacion %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="nivel_prioridad" class="form-label">Nivel de Prioridad</label>
+                    <select class="form-select" id="nivel_prioridad" name="nivel_prioridad" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="Alta" <% if (Recomendaciones.nivel_prioridad === 'Alta') { %>selected<% } %>>Alta</option>
+                        <option value="Media" <% if (Recomendaciones.nivel_prioridad === 'Media') { %>selected<% } %>>Media</option>
+                        <option value="Baja" <% if (Recomendaciones.nivel_prioridad === 'Baja') { %>selected<% } %>>Baja</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <a href="/recomendaciones" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

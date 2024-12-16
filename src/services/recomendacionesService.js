@@ -5,9 +5,19 @@ const Recomendaciones = require('../models/recomendaciones');
 class RecomendacionesService {
     
     async createRecomendaciones(data) {
-        const Recomendaciones = new Recomendaciones(data);
-        await Recomendaciones.save();
-        return Recomendaciones;
+        const nuevaRecomendacion = new Recomendaciones({
+            fecha: data.fecha,
+            tipo_recomendacion: data.tipo_recomendacion,
+            mensaje_recomendacion: data.mensaje_recomendacion,
+            nivel_prioridad: data.nivel_prioridad,
+           
+        });
+
+        try {
+            await nuevaRecomendacion.save();
+        } catch (error) {
+            throw new Error('Error al insertar recomendacion: ' + error.message)
+        }
     }
 
    
@@ -16,9 +26,23 @@ class RecomendacionesService {
     }
 
 
-    async updateRecomendaciones(id, data) {
-        return await Recomendaciones.findByIdAndUpdate(id, data, { new: true });
+    async updateRecomendaciones(id, body) {
+        try {
+            const resultado = await Recomendaciones.findByIdAndUpdate(id, {
+            fecha: body.fecha,
+            tipo_recomendacion: body.tipo_recomendacion,
+            mensaje_recomendacion: body.mensaje_recomendacion,
+            nivel_prioridad: body.nivel_prioridad,
+          });
+      
+        
+          console.log("Redirección exitosa después de actualizar la recomendación.");
+          return resultado;
+        } catch (error) {
+          console.log("Error al actualizar la recomendación:", error);
+        }
     }
+      
 
 
     async deleteRecomendaciones(id) {
@@ -42,8 +66,6 @@ class RecomendacionesService {
             }else {
                 recomendaciones = await Recomendaciones.find({});
             }
-
-            console.log('Recomendaciones encontradas:', recomendaciones);
             return recomendaciones;
         } catch (error) {
             throw new Error('Error al filtrar las Recomendaciones: ' + error.message);

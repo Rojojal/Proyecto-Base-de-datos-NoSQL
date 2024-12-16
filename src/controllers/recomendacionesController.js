@@ -1,26 +1,56 @@
 // src/controllers/RecomendacionesController.js
 const { render } = require('ejs');
 const RecomendacionesService = require('../services/recomendacionesService');
-const Recomendaciones = require('../models/recomendaciones');
+
 
 
 class RecomendacionesController {
 
 
-  /** 
+   /** 
    * GET / 
-   * Crear recomendaciones
+   * Mostrar recomendaciones
   */
-  async createRecomendaciones(req, res) {
+   async getAllRecomendaciones(req, res) {
     try {
+
+      const recomendaciones = await RecomendacionesService.getAllRecomendaciones();
+      res.render('Recomendaciones/index', { title: 'Recomendaciones', recomendaciones });
       
-      res.render('Recomendaciones/create.ejs',  { title: 'Crear recomendacion'},)
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   }
 
- /** 
+  
+   /** 
+   * GET / 
+   * Vista crear recomendaciones
+  */
+   async viewCreateRecomendaciones(req, res) {
+    try {
+      res.render('Recomendaciones/create',  { title: 'Crear recomendacion', recomendaciones: {}})
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+  /** 
+   * POST / 
+   * Boton crear recomendaciones
+  */
+  async createRecomendaciones(req, res) {
+    
+    try {
+      console.log('Datos recibidos:', req.body);
+      const recomendaciones = await RecomendacionesService.createRecomendaciones(req.body);
+      res.redirect('/recomendaciones');
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+/** 
   async getRecomendaciones(req, res) {
     try {
       const Recomendaciones = await RecomendacionesService.getRecomendaciones(req.params.id);
@@ -32,39 +62,39 @@ class RecomendacionesController {
       res.status(500).json({ error: err.message });
     }
   }
- */
+*/
 
 
-  /** 
-   * POST / 
-   * Mostrar recomendaciones
+
+/** 
+   * GET / 
+   * Vista actualizar recomendaciones
   */
-  async getAllRecomendaciones(req, res) {
+  async viewUpdateRecomendaciones(req, res) {
     try {
-      
-      if (!Recomendaciones || Recomendaciones.length === 0) {
-        return res.status(404).json({ error: 'No se encontraron Recomendaciones' });
-      }
-      const recomendaciones = await RecomendacionesService.getAllRecomendaciones();
-      res.render('Recomendaciones/index', { title: 'Recomendaciones', recomendaciones });
-      
+      const Recomendaciones = await RecomendacionesService.getRecomendaciones(req.params.id, req.body);
+      res.render('Recomendaciones/edit',  { title: 'editar recomendacion', Recomendaciones });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   }
 
-
-  async updateRecomendaciones(req, res) {
-    try {
-      const Recomendaciones = await RecomendacionesService.updateRecomendaciones(req.params.id, req.body);
-      if (!Recomendaciones) {
-        return res.status(404).json({ error: 'Recomendación no encontrada' });
-      }
-      res.json(Recomendaciones);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
+/** 
+   * PUT / 
+   * Actualizar datos recomendaciones
+  */
+async updateRecomendaciones(req, res) {
+  try {
+    console.log(req.params.id)
+    const Recomendaciones = await RecomendacionesService.updateRecomendaciones(req.params.id, req.body);
+    if (!Recomendaciones) {
+      return res.status(404).json({ error: 'Recomendación no encontrada' });
     }
+    res.redirect('/recomendaciones');
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
+}
 
 
   async deleteRecomendaciones(req, res) {

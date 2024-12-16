@@ -25,8 +25,17 @@
                             <td><%= element.mensaje_recomendacion %></td>
                             <td><%= element.nivel_prioridad %></td>
                             <td>
-                                <a href="/recomendaciones/edit/<%= element._id %>" class="btn btn-warning btn-sm">Editar</a>
-                                <a href="/recomendaciones/delete/<%= element._id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                <a href="/recomendaciones/edit/<%= element._id %>" class="btn btn-warning btn-sm">Editar
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+
+
+                                <form action="/recomendaciones/delete/<%= element._id %>"?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                        
+                                </form>
                             </td>
                         </tr>
                     <% }) %>
