@@ -35,8 +35,6 @@ class RecomendacionesService {
             nivel_prioridad: body.nivel_prioridad,
           });
       
-        
-          console.log("Redirección exitosa después de actualizar la recomendación.");
           return resultado;
         } catch (error) {
           console.log("Error al actualizar la recomendación:", error);

@@ -14,6 +14,7 @@ router.post('/add', RecomendacionesController.createRecomendaciones);
 
 router.get('/edit/:id', RecomendacionesController.viewUpdateRecomendaciones)
 router.put('/edit/:id', RecomendacionesController.updateRecomendaciones)
+router.delete('/:id', RecomendacionesController.deleteRecomendaciones)
 
 
 module.exports = router;

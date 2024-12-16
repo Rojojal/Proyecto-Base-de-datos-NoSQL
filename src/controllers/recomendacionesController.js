@@ -103,7 +103,7 @@ async updateRecomendaciones(req, res) {
       if (!Recomendaciones) {
         return res.status(404).json({ error: 'Recomendación no encontrada' });
       }
-      res.json({ message: 'Recomendación eliminada' });
+      res.redirect('/recomendaciones');
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
