@@ -67,7 +67,7 @@ class RecomendacionesController {
 
 
 /** 
-   * GET / 
+   * GET /:id
    * Vista actualizar recomendaciones
   */
   async viewUpdateRecomendaciones(req, res) {
@@ -80,7 +80,7 @@ class RecomendacionesController {
   }
 
 /** 
-   * PUT / 
+   * PUT /:id
    * Actualizar datos recomendaciones
   */
 async updateRecomendaciones(req, res) {
@@ -96,7 +96,10 @@ async updateRecomendaciones(req, res) {
   }
 }
 
-
+/** 
+   * DELETE /:id
+   * Actualizar datos recomendaciones
+  */
   async deleteRecomendaciones(req, res) {
     try {
       const Recomendaciones = await RecomendacionesService.deleteRecomendaciones(req.params.id);

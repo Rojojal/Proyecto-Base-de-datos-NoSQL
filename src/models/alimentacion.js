@@ -13,6 +13,6 @@ const alimentacionSchema = new mongoose.Schema({
 }, { collection: 'Alimentacion' });
 
 alimentacionSchema.plugin(AutoIncrement, { inc_field: 'alimentacion_id', start_seq: 13 });
-alimentacionSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('Alimentacion', alimentacionSchema);

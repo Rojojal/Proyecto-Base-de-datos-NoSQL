@@ -14,6 +14,6 @@ const emocionalSchema = new mongoose.Schema({
 
 
 emocionalSchema.plugin(AutoIncrement, { inc_field: 'emocional_id', start_seq: 13 });
-emocionalSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('Emocional', emocionalSchema);

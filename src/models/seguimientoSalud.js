@@ -15,6 +15,6 @@ const seguimientoSaludSchema = new mongoose.Schema({
 
 
 seguimientoSaludSchema.plugin(AutoIncrement, { inc_field: 'seguimiento_salud_id', start_seq: 13 });
-seguimientoSaludSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('SeguimientoSalud', seguimientoSaludSchema);

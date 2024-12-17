@@ -7,7 +7,6 @@ class suenoService {
 
     async createSueno(data) {
         const nuevoSueno = new Sueno({
-            user_id: data.user_id,
             fecha: data.fecha,
             duracion_sueno: data.duracion_sueno,
             calidad_sueno: data.calidad_sueno,

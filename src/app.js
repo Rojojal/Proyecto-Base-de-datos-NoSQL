@@ -7,9 +7,12 @@ const methodOverride = require('method-override');
 const itemRoutes = require('./routes/itemRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const recomendacionRoutes = require('./routes/recomendacionesRoutes');
- 
+const suenoRoutes = require('./routes/suenoRoutes');
+const seguimientoSalud = require('./routes/seguimientoSaludRoutes');
 
 
+const emocionalRoutes = require('./routes/emocionalRoutes'); 
+const alimentacionRoutes = require('./routes/alimentacionRoutes');
 
 const app = express();
  
@@ -55,7 +58,11 @@ app.get('/', (req, res) => {
 app.use('/api', itemRoutes);
 app.use('/Usuarios', usuarioRoutes);
 app.use('/recomendaciones', recomendacionRoutes);
+app.use('/sueno', suenoRoutes);
 
+app.use('/emocional', emocionalRoutes); 
+app.use('/alimentacion', alimentacionRoutes);
+app.use('/seguimientoSalud', seguimientoSalud);
 
 
 /** 

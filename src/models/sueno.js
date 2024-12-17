@@ -14,6 +14,6 @@ const suenoSchema = new mongoose.Schema({
 
 
 suenoSchema.plugin(AutoIncrement, { inc_field: 'sueno_id', start_seq: 13 });
-suenoSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('Sueño', suenoSchema);
