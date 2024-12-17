@@ -13,6 +13,5 @@ const recomendacionesSchema = new mongoose.Schema({
 }, { collection: 'Recomendaciones' });
 
 recomendacionesSchema.plugin(AutoIncrement, { inc_field: 'recomendaciones_id', start_seq: 13 });
-recomendacionesSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
 
 module.exports = mongoose.model('Recomendaciones', recomendacionesSchema);

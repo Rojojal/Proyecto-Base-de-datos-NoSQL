@@ -1,0 +1,72 @@
+
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-5">
+              <div class="card shadow-sm">
+                  <div class="card-header bg-primary text-white text-center">
+                      <h4><i class="fa-solid fa-user-plus"></i> Registro de Usuario</h4>
+                  </div>
+                  <div class="card-body">
+                      <form action="/register" method="POST">
+                          <div class="mb-3">
+                              <label for="nombre" class="form-label">
+                                  <i class="fa-solid fa-user"></i> Nombre
+                              </label>
+                              <input type="text" class="form-control" name="nombre" id="nombre" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="contraseña" class="form-label">
+                                <i class="fa-solid fa-lock"></i> Contraseña
+                            </label>
+                            <input type="password" class="form-control" name="contraseña" id="contraseña" required>
+                        </div>
+                          <div class="mb-3">
+                              <label for="edad" class="form-label">
+                                  <i class="fa-solid fa-calendar"></i> Edad
+                              </label>
+                              <input type="number" class="form-control" name="edad" id="edad" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="genero" class="form-label">
+                                  <i class="fa-solid fa-venus-mars"></i> Género
+                              </label>
+                              <select class="form-select" name="genero" id="genero" required>
+                                  <option value="M">Masculino</option>
+                                  <option value="F">Femenino</option>
+                                  <option value="Otro">Otro</option>
+                              </select>
+                          </div>
+                          <div class="mb-3">
+                              <label for="email" class="form-label">
+                                  <i class="fa-solid fa-envelope"></i> Correo Electrónico
+                              </label>
+                              <input type="email" class="form-control" name="email" id="email" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="ubicacion" class="form-label">
+                                  <i class="fa-solid fa-map-marker-alt"></i> Ubicación
+                              </label>
+                              <input type="text" class="form-control" name="ubicacion" id="ubicacion" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="objetivos_salud" class="form-label">
+                                  <i class="fa-solid fa-heartbeat"></i> Objetivos de Salud
+                              </label>
+                              <input type="text" class="form-control" name="objetivos_salud" id="objetivos_salud" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="pais" class="form-label">
+                                  <i class="fa-solid fa-globe"></i> País
+                              </label>
+                              <input type="text" class="form-control" name="pais" id="pais" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary w-100">
+                              <i class="fa-solid fa-paper-plane"></i> Registrarse
+                          </button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+

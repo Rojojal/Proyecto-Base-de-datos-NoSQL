@@ -4,6 +4,7 @@ const path = require('path');
 const connectDB = require('./config/db');
 const expressLayouts = require('express-ejs-layouts'); 
 const methodOverride = require('method-override');
+const session = require('express-session');
 const itemRoutes = require('./routes/itemRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const recomendacionRoutes = require('./routes/recomendacionesRoutes');
@@ -23,11 +24,26 @@ const app = express();
 // Conectar a la base de datos
 connectDB();
  
-// Middleware
 
+/** 
+ * Middlewares
+*/
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+
+
+/** 
+ * Configuraciones express-session
+*/
+app.use(
+  session({
+    secret: 'Pruebas', 
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 } 
+  })
+);
  
 
 /** 
@@ -60,7 +76,7 @@ app.get('/', (req, res) => {
 */
 
 app.use('/api', itemRoutes);
-app.use('/Usuarios', usuarioRoutes);
+app.use('/usuarios', usuarioRoutes);
 app.use('/recomendaciones', recomendacionRoutes);
 app.use('/sueno', suenoRoutes);
 app.use('/seguimientoSalud', seguimientoSaludRoutes);
@@ -87,5 +103,9 @@ app.get('*', (req, res)=> {
   res.status(500).render('Error/500', { title: '500 - Error del servidor' })
 });
 
+
+/** 
+ * Inicia el servidor en el puerto 5000
+*/
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));  
