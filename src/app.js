@@ -8,9 +8,13 @@ const itemRoutes = require('./routes/itemRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const recomendacionRoutes = require('./routes/recomendacionesRoutes');
 const suenoRoutes = require('./routes/suenoRoutes');
-const seguimientoSalud = require('./routes/seguimientoSaludRoutes');
-
-
+const seguimientoSaludRoutes = require('./routes/seguimientoSaludRoutes');
+const retroalimentacionRoutes = require('./routes/retroalimentacionRoutes');
+const recordatorioRoutes = require('./routes/recordatorioRoutes');
+const logrosRoutes = require('./routes/logrosRoutes');
+const historiasExitoRoutes = require('./routes/historiasExitoRoutes');
+const historiasConsultasRoutes = require('./routes/historiasConsultasRoutes');
+const actividadFisicaRoutes = require('./routes/actividadFisicaRoutes');
 const emocionalRoutes = require('./routes/emocionalRoutes'); 
 const alimentacionRoutes = require('./routes/alimentacionRoutes');
 
@@ -34,7 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 /** 
  * Para poder usar el layout
- * Establece _layout como preterminado
+ * Establece _layout como preterminado para el footer y header
 */
 app.use(expressLayouts);
 app.set('layout', '_layout');  
@@ -59,10 +63,17 @@ app.use('/api', itemRoutes);
 app.use('/Usuarios', usuarioRoutes);
 app.use('/recomendaciones', recomendacionRoutes);
 app.use('/sueno', suenoRoutes);
-
+app.use('/seguimientoSalud', seguimientoSaludRoutes);
+app.use('/retroalimentacion', retroalimentacionRoutes);
+app.use('/recordatorio', recordatorioRoutes);
+app.use('/logros', logrosRoutes);
+app.use('/historiasExito', historiasExitoRoutes);
+app.use('/historiasConsultas', historiasConsultasRoutes);
 app.use('/emocional', emocionalRoutes); 
 app.use('/alimentacion', alimentacionRoutes);
-app.use('/seguimientoSalud', seguimientoSalud);
+app.use('/actividadFisica', actividadFisicaRoutes);
+
+
 
 
 /** 

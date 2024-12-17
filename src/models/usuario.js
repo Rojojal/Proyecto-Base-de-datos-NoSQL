@@ -1,6 +1,7 @@
 // src/models/usuarios.js
 
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const usuarioSchema = new mongoose.Schema({
     user_id: {type: Number, required: true},

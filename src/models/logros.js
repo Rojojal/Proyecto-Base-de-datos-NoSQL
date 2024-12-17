@@ -13,6 +13,6 @@ const logrosSchema = new mongoose.Schema({
 
 
 logrosSchema.plugin(AutoIncrement, { inc_field: 'logro_id', start_seq: 13 });
-logrosSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('Logros', logrosSchema);

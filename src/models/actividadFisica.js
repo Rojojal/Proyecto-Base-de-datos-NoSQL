@@ -14,6 +14,6 @@ const actividadFisicaSchema = new mongoose.Schema({
 
 
 actividadFisicaSchema.plugin(AutoIncrement, { inc_field: 'actividadFisica_id', start_seq: 13 });
-actividadFisicaSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('ActividadFisica', actividadFisicaSchema);

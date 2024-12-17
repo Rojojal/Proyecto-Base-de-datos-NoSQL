@@ -14,6 +14,6 @@ const retroalimentacionSchema = new mongoose.Schema({
 
 
 retroalimentacionSchema.plugin(AutoIncrement, { inc_field: 'retroalimentacion_id', start_seq: 13 });
-retroalimentacionSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('Retroalimentacion', retroalimentacionSchema);

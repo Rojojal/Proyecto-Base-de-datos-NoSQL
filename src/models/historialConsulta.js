@@ -14,6 +14,6 @@ const historialConsultaSchema = new mongoose.Schema({
 }, { collection: 'HistorialConsulta' });
 
 historialConsultaSchema.plugin(AutoIncrement, { inc_field: 'historial_consulta_id', start_seq: 13 });
-historialConsultaSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('HistorialConsulta', historialConsultaSchema);

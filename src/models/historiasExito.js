@@ -13,6 +13,6 @@ const historiasExitoSchema = new mongoose.Schema({
 }, { collection: 'HistoriasExito' });
 
 historiasExitoSchema.plugin(AutoIncrement, { inc_field: 'historias_exito_id', start_seq: 13 });
-historiasExitoSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('HistoriasExito', historiasExitoSchema);

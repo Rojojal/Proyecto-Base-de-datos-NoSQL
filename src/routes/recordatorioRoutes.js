@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const RecordatoriosController = require('../controllers/recordatoriosController');
+const RecordatoriosController = require('../controllers/recordatorioController');
 
 
 /** 

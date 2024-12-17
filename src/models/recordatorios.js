@@ -13,6 +13,6 @@ const recordatoriosSchema = new mongoose.Schema({
 
 
 recordatoriosSchema.plugin(AutoIncrement, { inc_field: 'recordatorios_id', start_seq: 13 });
-recordatoriosSchema.plugin(AutoIncrement, { inc_field: 'user_id', start_seq: 13 });
+
 
 module.exports = mongoose.model('Recordatorios', recordatoriosSchema);

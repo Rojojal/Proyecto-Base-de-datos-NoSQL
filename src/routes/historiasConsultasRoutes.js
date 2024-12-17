@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const HistorialConsultaController = require('../controllers/historialConsultaController');
+const HistorialConsultaController = require('../controllers/historialConsultasController');
 
 /** 
  * Rutas para manejar las historias de consultas
