@@ -81,18 +81,41 @@ class UsuariosService {
         }
     }
 
-    // Verificar si la contraseña es correcta
-    async validPassword(usuarioId, password) {
+
+    async validPassword(id, contraseña) {
         try {
-            const usuario = await Usuarios.findById(usuarioId);
+            console.log(id, contraseña)
+            const usuario = await Usuarios.findById(id);
             if (!usuario) {
                 throw new Error('Usuario no encontrado');
             }
-            return await usuario.validPassword(password);
+            return await usuario.validPassword(contraseña);
         } catch (error) {
             throw new Error('Error al verificar la contraseña: ' + error.message);
         }
     }
+
+    async getUsuarioByEmail(data) {
+
+        try {
+            // Buscar usuario en la base de datos por email
+            const usuario = await Usuarios.findOne({ email });
+
+            if (!usuario) {
+                return res.status(404).json({ message: 'Usuario no encontrado' });
+            }
+
+            // Devolver información del usuario
+            return res.status(200).json(usuario);
+        } catch (error) {
+            console.error('Error al buscar usuario por email:', error.message);
+            res.status(500).json({ message: 'Error interno del servidor' });
+        }
+    };
+
+
+
+
 }
 
 module.exports = new UsuariosService();
