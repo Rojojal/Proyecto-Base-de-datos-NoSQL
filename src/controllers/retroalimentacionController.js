@@ -86,6 +86,20 @@ class retroalimentacionController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchRetroalimentacion(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await retroalimentacionService.getAdvancedRetroalimentacion(filters);
+        res.render('Retroalimentacion/index', {
+            title: 'Búsqueda Avanzada de Retroalimentación',
+            retroalimentaciones: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new retroalimentacionController();

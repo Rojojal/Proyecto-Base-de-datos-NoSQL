@@ -74,6 +74,38 @@ class historiasExitoService {
             throw new Error('Error al obtener historias de éxito: ' + error.message);
         }
     }
+
+    async getAdvancedHistoriasExito(filters) {
+        let query = {};
+    
+        // Filtrar por estado de publicación
+        if (filters.estadoPublicacion) {
+            query.estado_publicacion = filters.estadoPublicacion;
+        }
+    
+        // Filtrar por palabras clave en el título o contenido
+        if (filters.keyword) {
+            query.$or = [
+                { titulo_historia: { $regex: filters.keyword, $options: 'i' } },
+                { contenido: { $regex: filters.keyword, $options: 'i' } }
+            ];
+        }
+    
+        // Filtrar por rango de fechas de publicación
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha_publicacion = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin)
+            };
+        }
+    
+        try {
+            return await HistoriasExito.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new historiasExitoService();

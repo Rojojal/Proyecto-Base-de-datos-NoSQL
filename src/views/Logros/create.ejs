@@ -1,0 +1,25 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Crear Logro</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/logros/add" method="POST">
+                <div class="mb-3">
+                    <label for="tipo_logro" class="form-label">Tipo de Logro</label>
+                    <input type="text" class="form-control" id="tipo_logro" name="tipo_logro" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_logro" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha_logro" name="fecha_logro" required>
+                </div>
+                <div class="text-end">
+                    <a href="/logros" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

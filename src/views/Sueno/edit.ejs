@@ -1,0 +1,37 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Registro de Sueño</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/sueno/edit/<%= sueno._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha"
+                        value="<%= new Date(sueno.fecha).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="duracion_sueno" class="form-label">Duración del Sueño (en horas)</label>
+                    <input type="number" class="form-control" id="duracion_sueno" name="duracion_sueno"
+                        value="<%= sueno.duracion_sueno %>" step="0.1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="calidad_sueno" class="form-label">Calidad del Sueño</label>
+                    <select class="form-select" id="calidad_sueno" name="calidad_sueno" required>
+                        <option value="Excelente" <% if (sueno.calidad_sueno === 'Excelente') { %>selected<% } %>>Excelente</option>
+                        <option value="Buena" <% if (sueno.calidad_sueno === 'Buena') { %>selected<% } %>>Buena</option>
+                        <option value="Regular" <% if (sueno.calidad_sueno === 'Regular') { %>selected<% } %>>Regular</option>
+                        <option value="Mala" <% if (sueno.calidad_sueno === 'Mala') { %>selected<% } %>>Mala</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="sugerencias_descanso" class="form-label">Sugerencias para Mejorar</label>
+                    <textarea class="form-control" id="sugerencias_descanso" name="sugerencias_descanso"
+                        rows="3" required><%= sueno.sugerencias_descanso %></textarea>
+                </div>
+                <div class="text-end">
+                    <a href="/sueno" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

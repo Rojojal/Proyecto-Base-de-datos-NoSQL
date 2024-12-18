@@ -1,0 +1,53 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Recordatorios</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form action="/recordatorios/search" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo_recordatorio" class="form-label">Tipo de Recordatorio</label>
+                <input type="text" class="form-control" id="tipo_recordatorio" name="tipo_recordatorio">
+            </div>
+            <div class="col-md-6">
+                <label for="fecha_hora" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha_hora" name="fecha_hora">
+            </div>
+        </div>
+        <div class="text-end mt-3">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-striped table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Fecha y Hora</th>
+                <th>Mensaje</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% recordatorios.forEach((recordatorio) => { %>
+                <tr>
+                    <td><%= recordatorio.recordatorios_id %></td>
+                    <td><%= recordatorio.user_id %></td>
+                    <td><%= new Date(recordatorio.fecha_hora).toLocaleString() %></td>
+                    <td><%= recordatorio.mensaje_recordatorio %></td>
+                    <td><%= recordatorio.tipo_recordatorio %></td>
+                    <td>
+                        <a href="/recordatorios/edit/<%= recordatorio._id %>" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="/recordatorios/<%= recordatorio._id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="text-end">
+        <a href="/recordatorios/create" class="btn btn-success">Agregar Recordatorio</a>
+    </div>
+</div>

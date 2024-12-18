@@ -14,10 +14,11 @@ const retroalimentacionRoutes = require('./routes/retroalimentacionRoutes');
 const recordatorioRoutes = require('./routes/recordatorioRoutes');
 const logrosRoutes = require('./routes/logrosRoutes');
 const historiasExitoRoutes = require('./routes/historiasExitoRoutes');
-const historiasConsultasRoutes = require('./routes/historiasConsultasRoutes');
+const historiasConsultasRoutes = require('./routes/historialConsultasRoutes');
 const actividadFisicaRoutes = require('./routes/actividadFisicaRoutes');
 const emocionalRoutes = require('./routes/emocionalRoutes'); 
 const alimentacionRoutes = require('./routes/alimentacionRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express();
  
@@ -88,7 +89,7 @@ app.use('/historiasConsultas', historiasConsultasRoutes);
 app.use('/emocional', emocionalRoutes); 
 app.use('/alimentacion', alimentacionRoutes);
 app.use('/actividadFisica', actividadFisicaRoutes);
-
+app.use('/', dashboardRoutes);
 
 
 

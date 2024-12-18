@@ -1,4 +1,4 @@
-// src/routes/recordatoriosController.js
+// src/routes/recordatoriosRoutes.js
 
 const express = require('express');
 const router = express.Router();
@@ -15,5 +15,8 @@ router.post('/add', RecordatoriosController.createRecordatorio);
 router.get('/edit/:id', RecordatoriosController.viewUpdateRecordatorio);
 router.put('/edit/:id', RecordatoriosController.updateRecordatorio);
 router.delete('/:id', RecordatoriosController.deleteRecordatorio);
+
+router.get('/search', RecordatoriosController.searchRecordatorios);
+
 
 module.exports = router;

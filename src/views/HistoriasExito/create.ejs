@@ -1,0 +1,32 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Nueva Historia de Éxito</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/historias-exito/add" method="POST">
+                <div class="mb-3">
+                    <label for="titulo_historia" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="titulo_historia" name="titulo_historia" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contenido" class="form-label">Contenido</label>
+                    <textarea class="form-control" id="contenido" name="contenido" rows="5" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_publicacion" class="form-label">Fecha de Publicación</label>
+                    <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion" required>
+                </div>
+                <div class="mb-3">
+                    <label for="estado_publicacion" class="form-label">Estado</label>
+                    <select class="form-select" id="estado_publicacion" name="estado_publicacion" required>
+                        <option value="Publicado">Publicado</option>
+                        <option value="No Publicado">No Publicado</option>
+                    </select>
+                </div>
+                <div class="text-end">
+                    <a href="/historias-exito" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

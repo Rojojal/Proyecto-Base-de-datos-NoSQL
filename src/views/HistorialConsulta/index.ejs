@@ -1,0 +1,51 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Historial de Consultas</h1>
+    
+    <!-- Formulario de búsqueda -->
+    <form action="/historial-consulta/search" method="GET" class="mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="motivo_consulta" class="form-label">Motivo de Consulta</label>
+                <input type="text" class="form-control" id="motivo_consulta" name="motivo_consulta">
+            </div>
+            <div class="col-md-6">
+                <label for="diagnostico" class="form-label">Diagnóstico</label>
+                <input type="text" class="form-control" id="diagnostico" name="diagnostico">
+            </div>
+        </div>
+        <div class="text-end mt-3">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+    
+    <table class="table table-striped table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Motivo de Consulta</th>
+                <th>Diagnóstico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% registros.forEach((registro) => { %>
+                <tr>
+                    <td><%= registro.historialConsulta_id %></td>
+                    <td><%= new Date(registro.fecha).toLocaleDateString() %></td>
+                    <td><%= registro.motivo_consulta %></td>
+                    <td><%= registro.diagnostico %></td>
+                    <td>
+                        <a href="/historial-consulta/edit/<%= registro._id %>" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="/historial-consulta/<%= registro._id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="text-end">
+        <a href="/historial-consulta/create" class="btn btn-success">Agregar Registro</a>
+    </div>
+</div>

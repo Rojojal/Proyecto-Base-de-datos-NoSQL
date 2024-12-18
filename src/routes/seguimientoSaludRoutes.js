@@ -1,4 +1,4 @@
-// src/routes/seguimientoSaludController.js
+// src/routes/seguimientoSaludRoutes.js
 
 const express = require('express');
 const router = express.Router();
@@ -15,5 +15,8 @@ router.post('/add', SeguimientoSaludController.createSeguimientoSalud);
 router.get('/edit/:id', SeguimientoSaludController.viewUpdateSeguimientoSalud);
 router.put('/edit/:id', SeguimientoSaludController.updateSeguimientoSalud);
 router.delete('/:id', SeguimientoSaludController.deleteSeguimientoSalud);
+
+router.get('/search', SeguimientoSaludController.searchSeguimientoSalud);
+
 
 module.exports = router;

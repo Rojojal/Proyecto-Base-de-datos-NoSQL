@@ -1,0 +1,38 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Seguimiento de Salud</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/seguimientoSalud/edit/<%= seguimientoSalud._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="fecha_inicial" class="form-label">Fecha Inicial</label>
+                    <input type="date" class="form-control" id="fecha_inicial" name="fecha_inicial"
+                        value="<%= new Date(seguimientoSalud.fecha_inicial).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_final" class="form-label">Fecha Final</label>
+                    <input type="date" class="form-control" id="fecha_final" name="fecha_final"
+                        value="<%= new Date(seguimientoSalud.fecha_final).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="metrica" class="form-label">Métrica</label>
+                    <input type="text" class="form-control" id="metrica" name="metrica"
+                        value="<%= seguimientoSalud.metrica %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="valor_inicial" class="form-label">Valor Inicial</label>
+                    <input type="number" class="form-control" id="valor_inicial" name="valor_inicial"
+                        value="<%= seguimientoSalud.valor_inicial %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="valor_final" class="form-label">Valor Final</label>
+                    <input type="number" class="form-control" id="valor_final" name="valor_final"
+                        value="<%= seguimientoSalud.valor_final %>" required>
+                </div>
+                <div class="text-end">
+                    <a href="/seguimientoSalud" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

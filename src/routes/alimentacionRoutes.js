@@ -1,4 +1,4 @@
-// src/routes/alimentacionController.js
+// src/routes/alimentacionRoutes.js
 
 const express = require('express');
 const router = express.Router();
@@ -14,5 +14,8 @@ router.post('/add', AlimentacionController.createAlimentacion);
 router.get('/edit/:id', AlimentacionController.viewUpdateAlimentacion);
 router.put('/edit/:id', AlimentacionController.updateAlimentacion);
 router.delete('/:id', AlimentacionController.deleteAlimentacion);
+
+router.get('/search', AlimentacionController.searchAlimentacion);
+
 
 module.exports = router;

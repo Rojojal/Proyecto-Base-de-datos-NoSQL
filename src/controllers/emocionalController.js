@@ -88,6 +88,20 @@ class emocionalController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchEmocional(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await emocionalService.getAdvancedEmocional(filters);
+        res.render('Emocional/index', {
+            title: 'Búsqueda Avanzada Emocional',
+            registros: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new emocionalController();

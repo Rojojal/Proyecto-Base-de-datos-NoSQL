@@ -1,0 +1,29 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Estado Emocional</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/emocional/edit/<%= registro._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha" value="<%= new Date(registro.fecha).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="estado_emocional" class="form-label">Estado Emocional</label>
+                    <input type="text" class="form-control" id="estado_emocional" name="estado_emocional" value="<%= registro.estado_emocional %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nivel_estres" class="form-label">Nivel de Estrés</label>
+                    <input type="number" class="form-control" id="nivel_estres" name="nivel_estres" value="<%= registro.nivel_estres %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="causas" class="form-label">Causas</label>
+                    <textarea class="form-control" id="causas" name="causas" rows="4" required><%= registro.causas %></textarea>
+                </div>
+                <div class="text-end">
+                    <a href="/emocional" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

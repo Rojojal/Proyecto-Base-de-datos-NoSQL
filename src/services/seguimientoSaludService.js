@@ -78,6 +78,44 @@ class seguimientoSaludService {
             throw new Error('Error al obtener seguimientos de salud: ' + error.message);
         }
     }
+
+    async getAdvancedSeguimientoSalud(filters) {
+        let query = {};
+    
+        // Filtrar por métrica
+        if (filters.metrica) {
+            query.metrica = filters.metrica;
+        }
+    
+        // Filtrar por rango de fechas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha_inicial = { $gte: new Date(filters.fechaInicio) };
+            query.fecha_final = { $lte: new Date(filters.fechaFin) };
+        }
+    
+        // Filtrar por rango de valores iniciales
+        if (filters.valorInicialMin && filters.valorInicialMax) {
+            query.valor_inicial = {
+                $gte: parseFloat(filters.valorInicialMin),
+                $lte: parseFloat(filters.valorInicialMax),
+            };
+        }
+    
+        // Filtrar por rango de valores finales
+        if (filters.valorFinalMin && filters.valorFinalMax) {
+            query.valor_final = {
+                $gte: parseFloat(filters.valorFinalMin),
+                $lte: parseFloat(filters.valorFinalMax),
+            };
+        }
+    
+        try {
+            return await SeguimientoSalud.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada de Seguimiento de Salud: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new seguimientoSaludService();

@@ -88,6 +88,20 @@ class actividadFisicaController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchActividadFisica(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await actividadFisicaService.getAdvancedActividadFisica(filters);
+        res.render('ActividadFisica/index', {
+            title: 'Búsqueda Avanzada de Actividad Física',
+            registros: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new actividadFisicaController();

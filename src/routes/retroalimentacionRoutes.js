@@ -1,4 +1,4 @@
-// src/controllers/retroalimentacionController.js
+// src/controllers/retroalimentacionRoutes.js
 
 const express = require('express');
 const router = express.Router();
@@ -15,5 +15,8 @@ router.post('/add', RetroalimentacionController.createRetroalimentacion);
 router.get('/edit/:id', RetroalimentacionController.viewUpdateRetroalimentacion);
 router.put('/edit/:id', RetroalimentacionController.updateRetroalimentacion);
 router.delete('/:id', RetroalimentacionController.deleteRetroalimentacion);
+
+router.get('/search', RetroalimentacionController.searchRetroalimentacion);
+
 
 module.exports = router;

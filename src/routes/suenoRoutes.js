@@ -1,4 +1,4 @@
-// src/routes/suenoController.js
+// src/routes/suenoRoutes.js
 const express = require('express');
 const router = express.Router();
 const SuenoController = require('../controllers/suenoController');
@@ -13,6 +13,8 @@ router.post('/add', SuenoController.createSueno);
 router.get('/edit/:id', SuenoController.viewUpdateSueno); 
 router.put('/edit/:id', SuenoController.updateSueno); 
 router.delete('/:id', SuenoController.deleteSueno); 
+
+router.get('/search', SuenoController.searchSuenos);
 
 
 module.exports = router;

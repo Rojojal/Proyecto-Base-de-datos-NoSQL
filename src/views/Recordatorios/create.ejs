@@ -1,0 +1,25 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Crear Recordatorio</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/recordatorios/add" method="POST">
+                <div class="mb-3">
+                    <label for="fecha_hora" class="form-label">Fecha y Hora</label>
+                    <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mensaje_recordatorio" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="mensaje_recordatorio" name="mensaje_recordatorio" rows="4" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo_recordatorio" class="form-label">Tipo de Recordatorio</label>
+                    <input type="text" class="form-control" id="tipo_recordatorio" name="tipo_recordatorio" required>
+                </div>
+                <div class="text-end">
+                    <a href="/recordatorios" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

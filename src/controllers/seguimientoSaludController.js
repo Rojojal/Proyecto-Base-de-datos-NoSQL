@@ -87,6 +87,20 @@ class seguimientoSaludController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchSeguimientoSalud(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await seguimientoSaludService.getAdvancedSeguimientoSalud(filters);
+        res.render('SeguimientoSalud/index', {
+            title: 'Búsqueda Avanzada de Seguimiento de Salud',
+            seguimientosSalud: resultados,
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new seguimientoSaludController();

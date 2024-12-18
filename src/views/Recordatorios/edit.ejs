@@ -1,0 +1,29 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Recordatorio</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/recordatorios/edit/<%= recordatorio._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="fecha_hora" class="form-label">Fecha y Hora</label>
+                    <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora" 
+                        value="<%= new Date(recordatorio.fecha_hora).toISOString().slice(0, 16) %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mensaje_recordatorio" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="mensaje_recordatorio" name="mensaje_recordatorio" rows="4" required>
+                        <%= recordatorio.mensaje_recordatorio %>
+                    </textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo_recordatorio" class="form-label">Tipo de Recordatorio</label>
+                    <input type="text" class="form-control" id="tipo_recordatorio" name="tipo_recordatorio" 
+                        value="<%= recordatorio.tipo_recordatorio %>" required>
+                </div>
+                <div class="text-end">
+                    <a href="/recordatorios" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

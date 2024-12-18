@@ -68,6 +68,35 @@ class recordatoriosService {
             throw new Error('Error al obtener recordatorios: ' + error.message);
         }
     }
+
+    async getAdvancedRecordatorios(filters) {
+        let query = {};
+    
+        // Filtrar por tipo de recordatorio
+        if (filters.tipoRecordatorio) {
+            query.tipo_recordatorio = filters.tipoRecordatorio;
+        }
+    
+        // Filtrar por contenido del mensaje
+        if (filters.keyword) {
+            query.mensaje_recordatorio = { $regex: filters.keyword, $options: 'i' };
+        }
+    
+        // Filtrar por rango de fechas y horas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha_hora = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin)
+            };
+        }
+    
+        try {
+            return await Recordatorios.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new recordatoriosService();

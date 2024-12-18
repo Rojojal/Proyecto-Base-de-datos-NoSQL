@@ -88,6 +88,20 @@ class alimentacionController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchAlimentacion(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await alimentacionService.getAdvancedAlimentacion(filters);
+        res.render('Alimentacion/index', {
+            title: 'Búsqueda Avanzada de Alimentación',
+            registros: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new alimentacionController();

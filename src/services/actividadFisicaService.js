@@ -66,6 +66,41 @@ class actividadFisicaService {
             throw new Error('Error al filtrar los registros de actividad física: ' + error.message);
         }
     }
+
+    
+    async getAdvancedActividadFisica(filters) {
+        let query = {};
+        
+        // Filtrar por rango de fechas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin)
+            };
+        }
+    
+        // Filtrar por duración mínima
+        if (filters.duracionMin) {
+            query.duracion_minutos = { ...query.duracion_minutos, $gte: parseInt(filters.duracionMin) };
+        }
+    
+        // Filtrar por duración máxima
+        if (filters.duracionMax) {
+            query.duracion_minutos = { ...query.duracion_minutos, $lte: parseInt(filters.duracionMax) };
+        }
+    
+        // Filtrar por tipo de actividad
+        if (filters.tipoActividad) {
+            query.tipo_actividad = filters.tipoActividad;
+        }
+    
+        try {
+            return await ActividadFisica.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new actividadFisicaService();

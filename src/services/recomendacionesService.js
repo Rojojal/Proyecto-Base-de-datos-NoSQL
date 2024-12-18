@@ -69,6 +69,35 @@ class RecomendacionesService {
             throw new Error('Error al filtrar las Recomendaciones: ' + error.message);
         }
     }
+
+    async getAdvancedRecomendaciones(filters) {
+        let query = {};
+    
+        // Filtrar por tipo de recomendación
+        if (filters.tipoRecomendacion) {
+            query.tipo_recomendacion = filters.tipoRecomendacion;
+        }
+    
+        // Filtrar por nivel de prioridad
+        if (filters.nivelPrioridad) {
+            query.nivel_prioridad = filters.nivelPrioridad;
+        }
+    
+        // Filtrar por rango de fechas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin)
+            };
+        }
+    
+        try {
+            return await Recomendaciones.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new RecomendacionesService();

@@ -86,6 +86,20 @@ class logrosController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchLogros(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await logrosService.getAdvancedLogros(filters);
+        res.render('Logros/index', {
+            title: 'Búsqueda Avanzada de Logros',
+            logros: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new logrosController();

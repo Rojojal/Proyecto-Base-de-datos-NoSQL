@@ -64,6 +64,38 @@ class alimentacionService {
             throw new Error('Error al filtrar los registros de alimentación: ' + error.message);
         }
     }
+
+    async getAdvancedAlimentacion(filters) {
+        let query = {};
+    
+        // Filtrar por rango de calorías
+        if (filters.caloriasMin && filters.caloriasMax) {
+            query.calorias_totales = {
+                $gte: parseInt(filters.caloriasMin),
+                $lte: parseInt(filters.caloriasMax)
+            };
+        }
+    
+        // Filtrar por agua consumida
+        if (filters.aguaMin && filters.aguaMax) {
+            query.agua_consumida_ml = {
+                $gte: parseInt(filters.aguaMin),
+                $lte: parseInt(filters.aguaMax)
+            };
+        }
+    
+        // Filtrar por palabras clave en sugerencias
+        if (filters.sugerenciasKeyword) {
+            query.sugerencias_nutricionales = { $regex: filters.sugerenciasKeyword, $options: 'i' };
+        }
+    
+        try {
+            return await Alimentacion.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new alimentacionService();

@@ -74,6 +74,35 @@ class logrosService {
             throw new Error('Error al obtener logros: ' + error.message);
         }
     }
+
+    async getAdvancedLogros(filters) {
+        let query = {};
+    
+        // Filtrar por tipo de logro
+        if (filters.tipoLogro) {
+            query.tipo_logro = filters.tipoLogro;
+        }
+    
+        // Filtrar por palabras clave en la descripción
+        if (filters.keyword) {
+            query.descripcion = { $regex: filters.keyword, $options: 'i' };
+        }
+    
+        // Filtrar por rango de fechas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha_logro = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin)
+            };
+        }
+    
+        try {
+            return await Logros.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new logrosService();

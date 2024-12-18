@@ -1,0 +1,57 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Seguimiento de Salud</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form action="/seguimientoSalud/search" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="metrica" class="form-label">Métrica</label>
+                <input type="text" class="form-control" id="metrica" name="metrica">
+            </div>
+            <div class="col-md-6">
+                <label for="fecha_inicial" class="form-label">Fecha Inicial</label>
+                <input type="date" class="form-control" id="fecha_inicial" name="fecha_inicial">
+            </div>
+        </div>
+        <div class="text-end mt-3">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-striped table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Fecha Inicial</th>
+                <th>Fecha Final</th>
+                <th>Métrica</th>
+                <th>Valor Inicial</th>
+                <th>Valor Final</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% seguimientosSalud.forEach((seguimiento) => { %>
+                <tr>
+                    <td><%= seguimiento.seguimiento_salud_id %></td>
+                    <td><%= seguimiento.user_id %></td>
+                    <td><%= new Date(seguimiento.fecha_inicial).toLocaleDateString() %></td>
+                    <td><%= new Date(seguimiento.fecha_final).toLocaleDateString() %></td>
+                    <td><%= seguimiento.metrica %></td>
+                    <td><%= seguimiento.valor_inicial %></td>
+                    <td><%= seguimiento.valor_final %></td>
+                    <td>
+                        <a href="/seguimientoSalud/edit/<%= seguimiento._id %>" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="/seguimientoSalud/<%= seguimiento._id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="text-end">
+        <a href="/seguimientoSalud/create" class="btn btn-success">Agregar Seguimiento</a>
+    </div>
+</div>

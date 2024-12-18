@@ -1,4 +1,4 @@
-// src/routes/historialConsultaController.js
+// src/routes/historialConsultaRoutes.js
 
 const express = require('express');
 const router = express.Router();
@@ -14,5 +14,8 @@ router.post('/add', HistorialConsultaController.createHistorialConsulta);
 router.get('/edit/:id', HistorialConsultaController.viewUpdateHistorial);
 router.put('/edit/:id', HistorialConsultaController.updateHistorialConsulta);
 router.delete('/:id', HistorialConsultaController.deleteHistorialConsulta);
+
+router.get('/search', HistorialConsultaController.searchHistorialConsulta);
+
 
 module.exports = router;

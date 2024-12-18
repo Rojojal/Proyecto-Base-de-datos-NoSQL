@@ -88,6 +88,20 @@ class historiasExitoController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchHistoriasExito(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await historiasExitoService.getAdvancedHistoriasExito(filters);
+        res.render('HistoriasExito/index', {
+            title: 'Búsqueda Avanzada de Historias de Éxito',
+            historias: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new historiasExitoController();

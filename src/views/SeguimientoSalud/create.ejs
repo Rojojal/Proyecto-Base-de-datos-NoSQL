@@ -1,0 +1,33 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Crear Seguimiento de Salud</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/seguimientoSalud/add" method="POST">
+                <div class="mb-3">
+                    <label for="fecha_inicial" class="form-label">Fecha Inicial</label>
+                    <input type="date" class="form-control" id="fecha_inicial" name="fecha_inicial" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_final" class="form-label">Fecha Final</label>
+                    <input type="date" class="form-control" id="fecha_final" name="fecha_final" required>
+                </div>
+                <div class="mb-3">
+                    <label for="metrica" class="form-label">Métrica</label>
+                    <input type="text" class="form-control" id="metrica" name="metrica" required>
+                </div>
+                <div class="mb-3">
+                    <label for="valor_inicial" class="form-label">Valor Inicial</label>
+                    <input type="number" class="form-control" id="valor_inicial" name="valor_inicial" required>
+                </div>
+                <div class="mb-3">
+                    <label for="valor_final" class="form-label">Valor Final</label>
+                    <input type="number" class="form-control" id="valor_final" name="valor_final" required>
+                </div>
+                <div class="text-end">
+                    <a href="/seguimientoSalud" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

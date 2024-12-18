@@ -1,0 +1,29 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Actividad Física</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/actividad-fisica/edit/<%= registro._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha" value="<%= new Date(registro.fecha).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo_actividad" class="form-label">Tipo de Actividad</label>
+                    <input type="text" class="form-control" id="tipo_actividad" name="tipo_actividad" value="<%= registro.tipo_actividad %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="duracion_minutos" class="form-label">Duración (min)</label>
+                    <input type="number" class="form-control" id="duracion_minutos" name="duracion_minutos" value="<%= registro.duracion_minutos %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="calorias_quemadas" class="form-label">Calorías Quemadas</label>
+                    <input type="number" class="form-control" id="calorias_quemadas" name="calorias_quemadas" value="<%= registro.calorias_quemadas %>" required>
+                </div>
+                <div class="text-end">
+                    <a href="/actividad-fisica" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

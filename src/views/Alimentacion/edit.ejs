@@ -1,0 +1,29 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Alimentación</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/alimentacion/edit/<%= registro._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="comidas" class="form-label">Comidas</label>
+                    <input type="text" class="form-control" id="comidas" name="comidas" value="<%= registro.comidas %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="calorias_totales" class="form-label">Calorías Totales</label>
+                    <input type="number" class="form-control" id="calorias_totales" name="calorias_totales" value="<%= registro.calorias_totales %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="agua_consumida_ml" class="form-label">Agua Consumida (ml)</label>
+                    <input type="number" class="form-control" id="agua_consumida_ml" name="agua_consumida_ml" value="<%= registro.agua_consumida_ml %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="sugerencias_nutricionales" class="form-label">Sugerencias Nutricionales</label>
+                    <textarea class="form-control" id="sugerencias_nutricionales" name="sugerencias_nutricionales" rows="4" required><%= registro.sugerencias_nutricionales %></textarea>
+                </div>
+                <div class="text-end">
+                    <a href="/alimentacion" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

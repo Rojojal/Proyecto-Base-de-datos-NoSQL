@@ -111,6 +111,20 @@ async updateRecomendaciones(req, res) {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchRecomendaciones(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await RecomendacionesService.getAdvancedRecomendaciones(filters);
+        res.render('Recomendaciones/index', {
+            title: 'Búsqueda Avanzada de Recomendaciones',
+            recomendaciones: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new RecomendacionesController();

@@ -1,4 +1,4 @@
-// src/routes/historiasExitoController.js
+// src/routes/historiasExitoRoutes.js
 
 const express = require('express');
 const router = express.Router();
@@ -14,5 +14,7 @@ router.post('/add', HistoriasExitoController.createHistoriaExito);
 router.get('/edit/:id', HistoriasExitoController.viewUpdateHistoria);
 router.put('/edit/:id', HistoriasExitoController.updateHistoriaExito);
 router.delete('/:id', HistoriasExitoController.deleteHistoriaExito);
+
+router.get('/search', HistoriasExitoController.searchHistoriasExito);
 
 module.exports = router;

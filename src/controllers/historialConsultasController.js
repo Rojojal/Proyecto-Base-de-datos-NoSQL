@@ -88,6 +88,20 @@ class historialConsultaController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchHistorialConsulta(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await historialConsultaService.getAdvancedHistorialConsulta(filters);
+        res.render('HistorialConsulta/index', {
+            title: 'Búsqueda Avanzada de Historial de Consulta',
+            historiales: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new historialConsultaController();

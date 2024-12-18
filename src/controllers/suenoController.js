@@ -90,6 +90,20 @@ class suenoController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchSuenos(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await suenoService.getAdvancedSuenos(filters);
+        res.render('Sueno/index', {
+            title: 'Búsqueda Avanzada de Sueño',
+            suenos: resultados,
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new suenoController();

@@ -67,6 +67,35 @@ class historialConsultaService {
             throw new Error('Error al filtrar los historiales de consulta: ' + error.message);
         }
     }
+
+    async getAdvancedHistorialConsulta(filters) {
+        let query = {};
+    
+        // Filtrar por tipo de consulta
+        if (filters.tipoConsulta) {
+            query.tipo_consulta = filters.tipoConsulta;
+        }
+    
+        // Filtrar por especialista
+        if (filters.especialista) {
+            query.especialista = filters.especialista;
+        }
+    
+        // Filtrar por rango de fechas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin)
+            };
+        }
+    
+        try {
+            return await HistorialConsulta.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new historialConsultaService();

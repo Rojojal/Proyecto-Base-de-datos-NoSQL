@@ -1,0 +1,29 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Crear Retroalimentación</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/retroalimentacion/add" method="POST">
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo_feedback" class="form-label">Tipo de Feedback</label>
+                    <input type="text" class="form-control" id="tipo_feedback" name="tipo_feedback" required>
+                </div>
+                <div class="mb-3">
+                    <label for="comentario" class="form-label">Comentario</label>
+                    <textarea class="form-control" id="comentario" name="comentario" rows="4" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="valoracion" class="form-label">Valoración</label>
+                    <input type="number" class="form-control" id="valoracion" name="valoracion" min="1" max="5" required>
+                </div>
+                <div class="text-end">
+                    <a href="/retroalimentacion" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

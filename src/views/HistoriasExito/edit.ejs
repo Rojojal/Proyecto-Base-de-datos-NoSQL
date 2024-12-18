@@ -1,0 +1,32 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Historia</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/historias-exito/edit/<%= historia._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="titulo_historia" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="titulo_historia" name="titulo_historia" value="<%= historia.titulo_historia %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contenido" class="form-label">Contenido</label>
+                    <textarea class="form-control" id="contenido" name="contenido" rows="5" required><%= historia.contenido %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_publicacion" class="form-label">Fecha de Publicación</label>
+                    <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion" value="<%= new Date(historia.fecha_publicacion).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="estado_publicacion" class="form-label">Estado</label>
+                    <select class="form-select" id="estado_publicacion" name="estado_publicacion" required>
+                        <option value="Publicado" <% if (historia.estado_publicacion === 'Publicado') { %>selected<% } %>>Publicado</option>
+                        <option value="No Publicado" <% if (historia.estado_publicacion === 'No Publicado') { %>selected<% } %>>No Publicado</option>
+                    </select>
+                </div>
+                <div class="text-end">
+                    <a href="/historias-exito" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

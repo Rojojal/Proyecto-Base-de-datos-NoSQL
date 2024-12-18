@@ -86,6 +86,20 @@ class recordatoriosController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async searchRecordatorios(req, res) {
+    try {
+        const filters = req.query;
+        const resultados = await recordatoriosService.getAdvancedRecordatorios(filters);
+        res.render('Recordatorios/index', {
+            title: 'Búsqueda Avanzada de Recordatorios',
+            recordatorios: resultados
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 }
 
 module.exports = new recordatoriosController();

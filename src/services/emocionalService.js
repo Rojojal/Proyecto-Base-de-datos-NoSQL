@@ -66,6 +66,38 @@ class emocionalService {
             throw new Error('Error al filtrar los registros emocionales: ' + error.message);
         }
     }
+
+    async getAdvancedEmocional(filters) {
+        let query = {};
+    
+        // Filtrar por estado de ánimo
+        if (filters.estadoAnimo) {
+            query.estado_animo = filters.estadoAnimo;
+        }
+    
+        // Filtrar por nivel de estrés
+        if (filters.estresMin && filters.estresMax) {
+            query.estres_nivel = {
+                $gte: parseInt(filters.estresMin),
+                $lte: parseInt(filters.estresMax)
+            };
+        }
+    
+        // Filtrar por rango de fechas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin)
+            };
+        }
+    
+        try {
+            return await Emocional.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new emocionalService();

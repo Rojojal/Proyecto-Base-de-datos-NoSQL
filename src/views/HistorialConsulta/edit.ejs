@@ -1,0 +1,25 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Editar Consulta</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="/historial-consulta/edit/<%= registro._id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha" value="<%= new Date(registro.fecha).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="motivo_consulta" class="form-label">Motivo de Consulta</label>
+                    <input type="text" class="form-control" id="motivo_consulta" name="motivo_consulta" value="<%= registro.motivo_consulta %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="diagnostico" class="form-label">Diagnóstico</label>
+                    <textarea class="form-control" id="diagnostico" name="diagnostico" rows="4" required><%= registro.diagnostico %></textarea>
+                </div>
+                <div class="text-end">
+                    <a href="/historial-consulta" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

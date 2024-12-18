@@ -1,0 +1,55 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Retroalimentación</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form action="/retroalimentacion/search" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo_feedback" class="form-label">Tipo de Feedback</label>
+                <input type="text" class="form-control" id="tipo_feedback" name="tipo_feedback">
+            </div>
+            <div class="col-md-6">
+                <label for="valoracion" class="form-label">Valoración Mínima</label>
+                <input type="number" class="form-control" id="valoracion" name="valoracion_min" min="1" max="5">
+            </div>
+        </div>
+        <div class="text-end mt-3">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-striped table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Comentario</th>
+                <th>Valoración</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% retroalimentaciones.forEach((retroalimentacion) => { %>
+                <tr>
+                    <td><%= retroalimentacion.retroalimentacion_id %></td>
+                    <td><%= retroalimentacion.user_id %></td>
+                    <td><%= new Date(retroalimentacion.fecha).toLocaleDateString() %></td>
+                    <td><%= retroalimentacion.tipo_feedback %></td>
+                    <td><%= retroalimentacion.comentario %></td>
+                    <td><%= retroalimentacion.valoracion %></td>
+                    <td>
+                        <a href="/retroalimentacion/edit/<%= retroalimentacion._id %>" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="/retroalimentacion/<%= retroalimentacion._id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="text-end">
+        <a href="/retroalimentacion/create" class="btn btn-success">Agregar Retroalimentación</a>
+    </div>
+</div>

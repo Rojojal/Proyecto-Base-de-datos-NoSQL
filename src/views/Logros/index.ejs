@@ -1,0 +1,51 @@
+<div class="container py-5">
+    <h1 class="text-center mb-4">Logros</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form action="/logros/search" method="GET" class="mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tipo_logro" class="form-label">Tipo de Logro</label>
+                <input type="text" class="form-control" id="tipo_logro" name="tipo_logro">
+            </div>
+            <div class="col-md-6">
+                <label for="fecha_inicio" class="form-label">Fecha Inicial</label>
+                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio">
+            </div>
+        </div>
+        <div class="text-end mt-3">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-striped table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% logros.forEach((logro) => { %>
+                <tr>
+                    <td><%= logro.logro_id %></td>
+                    <td><%= logro.tipo_logro %></td>
+                    <td><%= logro.descripcion %></td>
+                    <td><%= new Date(logro.fecha_logro).toLocaleDateString() %></td>
+                    <td>
+                        <a href="/logros/edit/<%= logro._id %>" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="/logros/<%= logro._id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="text-end">
+        <a href="/logros/create" class="btn btn-success">Agregar Logro</a>
+    </div>
+</div>

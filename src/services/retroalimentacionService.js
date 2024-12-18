@@ -75,6 +75,66 @@ class retroalimentacionService {
             throw new Error('Error al obtener retroalimentaciones: ' + error.message);
         }
     }
+
+    async getAdvancedRetroalimentacion(filters) {
+        let query = {};
+    
+        // Filtrar por tipo de retroalimentación
+        if (filters.tipoFeedback) {
+            query.tipo_feedback = filters.tipoFeedback;
+        }
+    
+        // Filtrar por rango de valoraciones
+        if (filters.valoracionMin && filters.valoracionMax) {
+            query.valoracion = {
+                $gte: filters.valoracionMin,
+                $lte: filters.valoracionMax
+            };
+        }
+    
+        // Filtrar por rango de fechas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin)
+            };
+        }
+    
+        try {
+            return await Retroalimentacion.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada: ' + error.message);
+        }
+    }
+    
+    async getAdvancedSuenos(filters) {
+        let query = {};
+    
+        // Filtrar por calidad de sueño
+        if (filters.calidadSueno) {
+            query.calidad_sueno = filters.calidadSueno;
+        }
+    
+        // Filtrar por duración mínima
+        if (filters.duracionMinima) {
+            query.duracion_sueno = { $gte: parseInt(filters.duracionMinima) };
+        }
+    
+        // Filtrar por rango de fechas
+        if (filters.fechaInicio && filters.fechaFin) {
+            query.fecha = {
+                $gte: new Date(filters.fechaInicio),
+                $lte: new Date(filters.fechaFin),
+            };
+        }
+    
+        try {
+            return await Sueno.find(query);
+        } catch (error) {
+            throw new Error('Error en la búsqueda avanzada de Sueño: ' + error.message);
+        }
+    }
+    
 }
 
 module.exports = new retroalimentacionService();
