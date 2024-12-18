@@ -5,7 +5,6 @@ const connectDB = require('./config/db');
 const expressLayouts = require('express-ejs-layouts'); 
 const methodOverride = require('method-override');
 const session = require('express-session');
-const itemRoutes = require('./routes/itemRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const recomendacionRoutes = require('./routes/recomendacionesRoutes');
 const suenoRoutes = require('./routes/suenoRoutes');
@@ -14,11 +13,11 @@ const retroalimentacionRoutes = require('./routes/retroalimentacionRoutes');
 const recordatorioRoutes = require('./routes/recordatorioRoutes');
 const logrosRoutes = require('./routes/logrosRoutes');
 const historiasExitoRoutes = require('./routes/historiasExitoRoutes');
-const historiasConsultasRoutes = require('./routes/historialConsultasRoutes');
+const historialConsultasRoutes = require('./routes/historialConsultasRoutes');
 const actividadFisicaRoutes = require('./routes/actividadFisicaRoutes');
 const emocionalRoutes = require('./routes/emocionalRoutes'); 
 const alimentacionRoutes = require('./routes/alimentacionRoutes');
-const dashboardRoutes = require('./routes/dashboardRoutes');
+
 
 const app = express();
  
@@ -76,7 +75,7 @@ app.get('/', (req, res) => {
  * Rutas 
 */
 
-app.use('/api', itemRoutes);
+
 app.use('/usuarios', usuarioRoutes);
 app.use('/recomendaciones', recomendacionRoutes);
 app.use('/sueno', suenoRoutes);
@@ -85,11 +84,11 @@ app.use('/retroalimentacion', retroalimentacionRoutes);
 app.use('/recordatorio', recordatorioRoutes);
 app.use('/logros', logrosRoutes);
 app.use('/historiasExito', historiasExitoRoutes);
-app.use('/historiasConsultas', historiasConsultasRoutes);
+app.use('/historialConsultas', historialConsultasRoutes);
 app.use('/emocional', emocionalRoutes); 
 app.use('/alimentacion', alimentacionRoutes);
 app.use('/actividadFisica', actividadFisicaRoutes);
-app.use('/', dashboardRoutes);
+
 
 
 
