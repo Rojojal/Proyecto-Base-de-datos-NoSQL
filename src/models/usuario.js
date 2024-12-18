@@ -5,7 +5,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const bcrypt = require('bcrypt');
 
 const usuarioSchema = new mongoose.Schema({
-    user_id: {type: Number, required: true},
+    user_id: {type: Number},
     nombre: {type: String,required: true},
     contraseña: { type: String, required: true },
     edad: {type: Number,required: true,min: 0,max: 120 },

@@ -7,18 +7,21 @@ class UsuariosService {
 
 
     async createUsuario(data) {
-        const nuevoUsuario = new Usuarios({
-            nombre: data.nombre,
-            contraseña: await bcrypt.hash(data.contraseña, 10), // Encripta la contraseña
-            edad: data.edad,
-            genero: data.genero,
-            email: data.email,
-            ubicacion: data.ubicacion,
-            objetivos_salud: data.objetivos_salud,
-            pais: data.pais
-        });
-
         try {
+
+            const contraseñaEncriptada = await bcrypt.hash(data.contraseña, 10)
+            const nuevoUsuario = new Usuarios({
+                nombre: data.nombre,
+                contraseña: contraseñaEncriptada, // Encripta la contraseña
+                edad: data.edad,
+                genero: data.genero,
+                email: data.email,
+                ubicacion: data.ubicacion,
+                objetivos_salud: data.objetivos_salud,
+                pais: data.pais
+            });
+
+
             await nuevoUsuario.save();
         } catch (error) {
             throw new Error('Error al insertar usuario: ' + error.message);
@@ -41,7 +44,7 @@ class UsuariosService {
                 ubicacion: body.ubicacion,
                 objetivos_salud: body.objetivos_salud,
                 pais: body.pais
-            }); 
+            });
 
             return resultado;
         } catch (error) {
@@ -54,7 +57,7 @@ class UsuariosService {
         return await Usuarios.findByIdAndDelete(id);
     }
 
-s
+    s
     async getAllUsuarios(queries) {
         let usuarios;
         try {
